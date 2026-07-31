@@ -12,6 +12,7 @@ const productMessage = document.getElementById('product-message');
 const publishButton = document.getElementById('publish-button');
 const productsList = document.getElementById('admin-products');
 const productCount = document.getElementById('product-count');
+const forgotPasswordButton = document.getElementById('forgot-password');
 
 function showDashboard() {
   loginPanel.hidden = true;
@@ -60,6 +61,19 @@ loginForm.addEventListener('submit', async (event) => {
   }
   loginForm.reset();
   showDashboard();
+});
+
+forgotPasswordButton.addEventListener('click', async () => {
+  const email = document.getElementById('login-email').value.trim();
+  if (!email) {
+    loginMessage.textContent = 'Enter your email first, then select Forgot password.';
+    return;
+  }
+  loginMessage.textContent = 'Sending reset link…';
+  const { error } = await adminDatabase.auth.resetPasswordForEmail(email, {
+    redirectTo: 'https://farisco-ltd.github.io/marketplace-finds/reset-password.html'
+  });
+  loginMessage.textContent = error ? 'Could not send a reset link. Please try again.' : 'Reset link sent. Check your email.';
 });
 
 productForm.addEventListener('submit', async (event) => {

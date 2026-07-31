@@ -22,6 +22,8 @@ input:focus, select:focus { outline: 3px solid rgba(255,157,0,.28); border-color
 .login-card input { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.96); }
 button { min-height: 47px; border: 0; border-radius: 10px; color: var(--deep); background: var(--orange); font: inherit; font-weight: 800; cursor: pointer; }
 button:hover { filter: brightness(1.04); }
+.text-button { min-height: auto; justify-self: start; padding: 0; color: rgba(255,255,255,.78); border: 0; background: transparent; font-size: .84rem; text-decoration: underline; }
+.text-button:hover { color: var(--orange); filter: none; }
 .form-message { min-height: 20px; margin: 0; color: #b12a1a; font-size: .87rem; font-weight: 650; }
 .login-card .form-message { color: #ffbd56; }
 .dashboard { min-height: 100vh; }
