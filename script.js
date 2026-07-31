@@ -1,6 +1,8 @@
 const productsGrid = document.getElementById('products-grid');
 const year = document.getElementById('year');
 const languageToggle = document.getElementById('language-toggle');
+const menuToggle = document.getElementById('menu-toggle');
+const siteNav = document.querySelector('.site-nav');
 
 const copy = {
   en: {
@@ -74,6 +76,20 @@ function setLanguage(language) {
 }
 
 languageToggle.addEventListener('click', () => setLanguage(currentLanguage === 'en' ? 'ar' : 'en'));
+
+menuToggle.addEventListener('click', () => {
+  const open = siteNav.classList.toggle('is-open');
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+});
+
+siteNav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    siteNav.classList.remove('is-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
+  });
+});
 
 async function loadProducts() {
   try {
