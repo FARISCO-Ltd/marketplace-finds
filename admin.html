@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Marketplace Finds | Admin</title>
+  <link rel="stylesheet" href="admin.css?v=10">
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-panel" id="login-panel">
+      <a class="admin-brand" href="index.html"><img src="assets/images/icon.png" alt=""><span>Marketplace <strong>Finds</strong></span></a>
+      <div class="login-card">
+        <p class="eyebrow">Private area</p>
+        <h1>Product manager</h1>
+        <p class="muted">Sign in to add your latest find.</p>
+        <form id="login-form">
+          <label>Email<input id="login-email" type="email" autocomplete="email" required></label>
+          <label>Password<input id="login-password" type="password" autocomplete="current-password" required></label>
+          <button type="submit">Sign in</button>
+          <p class="form-message" id="login-message" role="alert"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="dashboard" id="dashboard" hidden>
+      <header class="dashboard-header">
+        <a class="admin-brand" href="index.html"><img src="assets/images/icon.png" alt=""><span>Marketplace <strong>Finds</strong></span></a>
+        <div class="header-actions"><a href="index.html" target="_blank" rel="noopener">View site ↗</a><button class="secondary-button" id="sign-out" type="button">Sign out</button></div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="intro"><p class="eyebrow">Product manager</p><h1>Add a new find</h1><p class="muted">Upload one image, add the two links, and publish.</p></div>
+        <form class="product-form" id="product-form">
+          <div class="form-grid">
+            <label>Product name<input id="title" name="title" type="text" placeholder="Wireless Earbuds" required></label>
+            <label>Arabic name <span class="optional">optional</span><input id="title-ar" name="title-ar" type="text" placeholder="سماعات لاسلكية"></label>
+            <label>Price<input id="price" name="price" type="text" placeholder="AED 89" required></label>
+            <label>Rating<select id="rating" name="rating"><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select></label>
+          </div>
+          <label class="wide-label">Product image<input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" required><span class="hint">Use a clear, square or portrait product image.</span></label>
+          <label class="wide-label">Amazon affiliate link<input id="amazon-url" name="amazon-url" type="url" placeholder="https://www.amazon.ae/..." required></label>
+          <label class="wide-label">TikTok product video link<input id="tiktok-url" name="tiktok-url" type="url" placeholder="https://www.tiktok.com/..." required></label>
+          <label class="checkbox-label"><input id="published" name="published" type="checkbox" checked> Publish this product immediately</label>
+          <button id="publish-button" type="submit">Publish product</button>
+          <p class="form-message" id="product-message" role="alert"></p>
+        </form>
+
+        <section class="products-panel" aria-labelledby="products-heading">
+          <div class="products-panel-heading"><h2 id="products-heading">Your products</h2><span id="product-count">0 products</span></div>
+          <div class="admin-products" id="admin-products"><p class="muted">Loading products…</p></div>
+        </section>
+      </div>
+    </section>
+  </main>
+  <script src="config.js?v=10"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="admin.js?v=10"></script>
+</body>
+</html>

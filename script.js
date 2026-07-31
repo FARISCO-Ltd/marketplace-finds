@@ -3,6 +3,10 @@ const year = document.getElementById('year');
 const languageToggle = document.getElementById('language-toggle');
 const menuToggle = document.getElementById('menu-toggle');
 const siteNav = document.querySelector('.site-nav');
+const database = window.supabase.createClient(
+  window.SUPABASE_CONFIG.url,
+  window.SUPABASE_CONFIG.publishableKey
+);
 
 const copy = {
   en: {
@@ -36,14 +40,15 @@ function stars(rating) {
 
 function productCard(product) {
   const text = copy[currentLanguage];
-  const title = currentLanguage === 'ar' && product.titleAr ? product.titleAr : (product.title || 'Marketplace Find');
+  const title = currentLanguage === 'ar' && product.title_ar ? product.title_ar : (product.title || 'Marketplace Find');
   const price = product.price || (currentLanguage === 'ar' ? 'اعرف السعر' : 'See price');
-  const amazon = product.amazon || '#';
-  const tiktok = product.tiktok || '#';
+  const amazon = product.amazon_url || product.amazon || '#';
+  const tiktok = product.tiktok_url || product.tiktok || '#';
+  const image = product.image_url || product.image;
 
   return `
     <article class="product-card">
-      <div class="product-image"><img src="${product.image}" alt="${title}" loading="lazy"></div>
+      <div class="product-image"><img src="${image}" alt="${title}" loading="lazy"></div>
       <div class="product-details">
         <div class="product-meta"><span>${text.featured}</span><span class="rating" aria-label="${product.rating || 0} out of 5 stars">${stars(product.rating)}</span></div>
         <h3>${title}</h3>
@@ -92,13 +97,24 @@ siteNav.querySelectorAll('a').forEach((link) => {
 });
 
 async function loadProducts() {
-  try {
-    const response = await fetch('products.json');
-    if (!response.ok) throw new Error('Could not load products.');
-    products = await response.json();
-  } catch (error) {
-    productsGrid.innerHTML = `<p class="empty-state">${copy[currentLanguage].unavailable}</p>`;
-    return;
+  const { data, error } = await database
+    .from('products')
+    .select('*')
+    .eq('is_published', true)
+    .order('sort_order', { ascending: true })
+    .order('created_at', { ascending: false });
+
+  if (!error && data.length) {
+    products = data;
+  } else {
+    try {
+      const response = await fetch('products.json?v=10');
+      if (!response.ok) throw new Error('Could not load products.');
+      products = await response.json();
+    } catch (fallbackError) {
+      productsGrid.innerHTML = `<p class="empty-state">${copy[currentLanguage].unavailable}</p>`;
+      return;
+    }
   }
   setLanguage(currentLanguage);
 }
