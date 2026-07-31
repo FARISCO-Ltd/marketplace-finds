@@ -2,6 +2,7 @@
     {
         "id": 1,
         "title": "Wireless Earbuds",
+        "titleAr": "سماعات لاسلكية",
         "price": "AED 89",
         "rating": 5,
         "image": "assets/images/earbuds.jpg",
