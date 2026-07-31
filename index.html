@@ -1,1 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Marketplace Finds — thoughtful product discoveries from Amazon and TikTok.">
+  <title>Marketplace Finds | Products worth finding</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-content">
+      <a class="brand" href="#top" aria-label="Marketplace Finds home">
+        <img class="brand-mark" src="assets/images/icon.png" alt="">
+        <span class="brand-name">Marketplace <strong>Finds</strong></span>
+      </a>
 
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#top">Home</a>
+        <a href="#products">Products</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-content">
+        <p class="eyebrow">Curated product discoveries</p>
+        <h1>Find the things<br><span>worth finding.</span></h1>
+        <p class="hero-copy">A considered collection of useful, trending products from Amazon and TikTok—picked to make everyday life a little better.</p>
+        <a class="button button-primary" href="#products">Explore the latest finds <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="products-section" id="products" aria-labelledby="products-title">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Fresh discoveries</p>
+            <h2 id="products-title">Latest finds</h2>
+          </div>
+          <p>Products that earned a place on our shortlist.</p>
+        </div>
+
+        <div class="products-grid" id="products-grid" aria-live="polite">
+          <p class="loading">Loading products…</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-content">
+      <a class="brand footer-brand" href="#top">
+        <img class="brand-mark" src="assets/images/icon.png" alt="">
+        <span class="brand-name">Marketplace <strong>Finds</strong></span>
+      </a>
+      <p>© <span id="year">2026</span> Marketplace Finds. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

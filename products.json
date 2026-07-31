@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "title": "Wireless Earbuds",
+        "price": "AED 89",
+        "rating": 5,
+        "image": "assets/images/earbuds.jpg",
+        "amazon": "https://amazon.ae",
+        "tiktok": "https://tiktok.com"
+    }
+]
