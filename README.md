@@ -11,7 +11,7 @@
   <header class="site-header">
     <div class="shell header-content">
       <a class="brand" href="#top" aria-label="Marketplace Finds home">
-        <span class="brand-logo"><img class="brand-mark" src="assets/images/icon.png" alt=""></span>
+        <img class="brand-mark" src="assets/images/icon.png" alt="">
         <span class="brand-name">Marketplace <strong>Finds</strong></span>
       </a>
 
@@ -54,7 +54,7 @@
   <footer class="site-footer">
     <div class="shell footer-content">
       <a class="brand footer-brand" href="#top">
-        <span class="brand-logo"><img class="brand-mark" src="assets/images/icon.png" alt=""></span>
+        <img class="brand-mark" src="assets/images/icon.png" alt="">
         <span class="brand-name">Marketplace <strong>Finds</strong></span>
       </a>
       <div class="footer-meta">
