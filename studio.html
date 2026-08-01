@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/images/icon.png">
+  <title>Marketplace Finds | Content Studio</title>
+  <link rel="stylesheet" href="admin.css?v=24">
+  <link rel="stylesheet" href="content-studio.css?v=1">
+</head>
+<body>
+  <main class="studio-shell" id="studio-shell" hidden>
+    <header class="dashboard-header">
+      <a class="admin-brand" href="index.html"><img src="assets/images/icon.png" alt=""><span>Marketplace <strong>Finds</strong></span></a>
+      <div class="header-actions"><a href="admin.html">Products admin</a><a href="index.html" target="_blank" rel="noopener">View site ↗</a><button class="secondary-button" id="studio-sign-out" type="button">Sign out</button></div>
+    </header>
+
+    <div class="studio-layout">
+      <section class="studio-editor" aria-labelledby="studio-heading">
+        <p class="eyebrow">Marketplace Finds</p>
+        <h1 id="studio-heading">Content Studio</h1>
+        <p class="muted">Create a branded TikTok product video without editing software.</p>
+
+        <form id="studio-form" class="studio-form">
+          <fieldset>
+            <legend>1. Choose media</legend>
+            <div class="mode-switch" role="group" aria-label="Media type">
+              <label><input type="radio" name="media-mode" value="images" checked> Images</label>
+              <label><input type="radio" name="media-mode" value="video"> Video</label>
+            </div>
+            <label class="file-picker">Add product image(s) <input id="studio-media" type="file" accept="image/png,image/jpeg,image/webp" multiple><span id="media-hint">Choose up to 5 images</span></label>
+            <label class="duration-control">Video length <select id="video-length"><option value="8">8 seconds</option><option value="12" selected>12 seconds</option><option value="15">15 seconds</option></select></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. Add product details</legend>
+            <label>Attention line <input id="studio-hook" type="text" maxlength="54" value="A smart find for everyday life"></label>
+            <label>Product name <input id="studio-title" type="text" maxlength="44" placeholder="Enter product name"></label>
+            <label>One key benefit <input id="studio-benefit" type="text" maxlength="74" placeholder="What makes it useful?"></label>
+            <div class="compact-fields"><label>Price <input id="studio-price" type="text" maxlength="16" placeholder="AED 120"></label><label>Call to action <input id="studio-cta" type="text" maxlength="28" value="Find it on Amazon"></label></div>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. Download</legend>
+            <p class="export-note">The video downloads as WebM (vertical 1080×1920). TikTok supports WebM uploads. Add music in TikTok after uploading if desired.</p>
+            <div class="export-actions"><button id="download-image" class="secondary-export" type="button">Download cover PNG</button><button id="download-video" type="button">Download video</button></div>
+            <p class="form-message" id="studio-message" role="alert"></p>
+          </fieldset>
+        </form>
+      </section>
+
+      <section class="studio-preview" aria-label="Video preview">
+        <div class="preview-heading"><span>Live preview</span><span>1080 × 1920</span></div>
+        <div class="canvas-frame"><canvas id="studio-canvas" width="1080" height="1920"></canvas></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="studio-loading" id="studio-loading">Opening Content Studio…</div>
+  <script src="config.js?v=24"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="content-studio.js?v=1"></script>
+</body>
+</html>
