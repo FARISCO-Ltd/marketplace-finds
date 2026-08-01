@@ -18,6 +18,7 @@ h2 { margin-bottom: 0; font-size: 1.4rem; letter-spacing: -.04em; }
 form { display: grid; gap: 17px; margin-top: 27px; }
 label { display: grid; gap: 7px; font-size: .86rem; font-weight: 720; }
 input, select { width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 10px; color: var(--ink); background: var(--white); font: inherit; }
+input::placeholder { color: #7d899d; opacity: 1; }
 input:focus, select:focus { outline: 3px solid rgba(255,157,0,.28); border-color: var(--orange); }
 .login-card input { border-color: rgba(255,255,255,.18); background: rgba(255,255,255,.96); }
 button { min-height: 47px; border: 0; border-radius: 10px; color: var(--deep); background: var(--orange); font: inherit; font-weight: 800; cursor: pointer; }

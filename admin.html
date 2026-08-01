@@ -35,17 +35,17 @@
       </header>
 
       <div class="dashboard-content">
-        <div class="intro"><p class="eyebrow">Product manager</p><h1>Add a new find</h1><p class="muted">Upload one image, add the two links, and publish.</p></div>
+        <div class="intro"><p class="eyebrow">Products Admin Panel</p><h1>Add New Finds</h1><p class="muted">Fill The Details, Add Picture &amp; Links</p></div>
         <form class="product-form" id="product-form">
           <div class="form-grid">
-            <label>Product name<input id="title" name="title" type="text" placeholder="Wireless Earbuds" required></label>
-            <label>Arabic name <span class="optional">optional</span><input id="title-ar" name="title-ar" type="text" placeholder="سماعات لاسلكية"></label>
-            <label>Price<input id="price" name="price" type="text" placeholder="AED 89" required></label>
+            <label>Product name<input id="title" name="title" type="text" placeholder="Enter product name" required></label>
+            <label>Arabic name <span class="optional">optional</span><input id="title-ar" name="title-ar" type="text" placeholder="Enter Arabic name"></label>
+            <label>Price<input id="price" name="price" type="text" placeholder="Enter price" required></label>
             <label>Rating<select id="rating" name="rating"><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select></label>
           </div>
           <label class="wide-label">Product image<input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" required><span class="hint">Use a clear, square or portrait product image.</span></label>
-          <label class="wide-label">Amazon affiliate link<input id="amazon-url" name="amazon-url" type="url" placeholder="https://www.amazon.ae/..." required></label>
-          <label class="wide-label">TikTok product video link<input id="tiktok-url" name="tiktok-url" type="url" placeholder="https://www.tiktok.com/..." required></label>
+          <label class="wide-label">Amazon affiliate link<input id="amazon-url" name="amazon-url" type="url" placeholder="Paste Amazon affiliate link" required></label>
+          <label class="wide-label">TikTok product video link<input id="tiktok-url" name="tiktok-url" type="url" placeholder="Paste TikTok video link" required></label>
           <label class="checkbox-label"><input id="published" name="published" type="checkbox" checked> Publish this product immediately</label>
           <button id="publish-button" type="submit">Publish product</button>
           <p class="form-message" id="product-message" role="alert"></p>
@@ -60,6 +60,6 @@
   </main>
   <script src="config.js?v=12"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="admin.js?v=19"></script>
+  <script src="admin.js?v=22"></script>
 </body>
 </html>
