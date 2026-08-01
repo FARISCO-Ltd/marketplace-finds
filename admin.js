@@ -62,7 +62,10 @@ loginForm.addEventListener('submit', async (event) => {
   }
   authenticatedInThisPage = true;
   loginForm.reset();
-  showDashboard();
+  // Reload once after a successful sign-in. This makes the stored session the
+  // single source of truth and avoids a delayed initial check returning users
+  // to the sign-in form.
+  window.location.replace('admin.html?dashboard=1');
 });
 
 forgotPasswordButton.addEventListener('click', async () => {
