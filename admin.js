@@ -61,17 +61,13 @@ loginForm.addEventListener('submit', async (event) => {
     return;
   }
   loginForm.reset();
-  // Reload once after a successful sign-in. This makes the stored session the
-  // single source of truth and avoids a delayed initial check returning users
-  // to the sign-in form.
-  window.location.replace('admin.html?dashboard=1');
+  showDashboard();
 });
 
 passwordToggle.addEventListener('click', () => {
   const passwordInput = document.getElementById('login-password');
   const showing = passwordInput.type === 'text';
   passwordInput.type = showing ? 'password' : 'text';
-  passwordToggle.textContent = showing ? 'Show' : 'Hide';
   passwordToggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
   passwordToggle.setAttribute('aria-pressed', String(!showing));
 });

@@ -28,8 +28,10 @@ button:hover { filter: brightness(1.04); }
 .login-card .form-message { color: #ffbd56; }
 .dashboard { min-height: 100vh; }
 .password-field { position: relative; display: block; }
-.password-field input { padding-right: 68px; }
-.password-toggle { position: absolute; top: 50%; right: 10px; width: auto; min-width: 48px; margin: 0; padding: 6px 8px; transform: translateY(-50%); border: 0; border-radius: 7px; background: #e8eef9; color: var(--deep); font-size: .75rem; font-weight: 800; cursor: pointer; }
+.password-field input { padding-right: 54px; }
+.password-toggle { position: absolute; top: 50%; right: 7px; display: grid; width: 36px; min-height: 36px; margin: 0; padding: 8px; place-items: center; transform: translateY(-50%); border: 0; border-radius: 8px; background: transparent; color: #314664; cursor: pointer; }
+.password-toggle:hover { background: #e8eef9; filter: none; }
+.password-toggle svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
 .dashboard-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; padding: 0 max(22px, calc((100% - 1120px) / 2)); color: var(--white); background: var(--deep); }
 .header-actions { display: flex; align-items: center; gap: 16px; font-size: .87rem; }
 .header-actions a { color: rgba(255,255,255,.77); text-decoration: none; }
