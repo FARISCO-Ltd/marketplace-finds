@@ -19,13 +19,17 @@ let loginSucceeded = false;
 
 function showDashboard() {
   loginPanel.hidden = true;
+  loginPanel.style.display = 'none';
   dashboard.hidden = false;
+  dashboard.style.display = 'block';
   loadAdminProducts();
 }
 
 function showLogin() {
   dashboard.hidden = true;
+  dashboard.style.display = 'none';
   loginPanel.hidden = false;
+  loginPanel.style.display = 'grid';
 }
 
 function safeFileName(fileName) {
@@ -65,8 +69,8 @@ loginForm.addEventListener('submit', async (event) => {
     return;
   }
   loginSucceeded = true;
-  loginForm.reset();
   showDashboard();
+  loginForm.reset();
 });
 
 passwordToggle.addEventListener('click', () => {
