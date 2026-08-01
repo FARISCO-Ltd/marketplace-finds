@@ -12,7 +12,7 @@ const copy = {
   en: {
     navHome: 'Home', navProducts: 'Products', heroEyebrow: 'Curated product discoveries',
     heroTitle: 'Find the things<br><span>worth finding.</span>',
-    heroCopy: 'A considered collection of useful, trending products from Amazon and TikTok—picked to make everyday life a little better.',
+    heroCopy: 'A considered collection of useful, trending products from Amazon to TikTok—picked to make everyday life a little better.',
     heroButton: 'Explore the latest finds', productsEyebrow: 'Fresh discoveries', productsTitle: 'Latest finds',
     productsCopy: 'Products that earned a place on our shortlist.', loading: 'Loading products…',
     featured: 'Featured find', amazon: 'Amazon', tiktok: 'TikTok', unavailable: 'Products are unavailable right now. Please check back soon.',
