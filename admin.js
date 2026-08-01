@@ -14,6 +14,8 @@ const productsList = document.getElementById('admin-products');
 const productCount = document.getElementById('product-count');
 const forgotPasswordButton = document.getElementById('forgot-password');
 const passwordToggle = document.querySelector('.password-toggle');
+let loginAttemptStarted = false;
+let loginSucceeded = false;
 
 function showDashboard() {
   loginPanel.hidden = true;
@@ -53,13 +55,16 @@ async function loadAdminProducts() {
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   loginMessage.textContent = '';
+  loginAttemptStarted = true;
   const email = document.getElementById('login-email').value.trim();
   const password = document.getElementById('login-password').value;
   const { error } = await adminDatabase.auth.signInWithPassword({ email, password });
   if (error) {
+    loginAttemptStarted = false;
     loginMessage.textContent = 'The email or password is incorrect.';
     return;
   }
+  loginSucceeded = true;
   loginForm.reset();
   showDashboard();
 });
@@ -158,6 +163,9 @@ document.getElementById('sign-out').addEventListener('click', async () => {
 });
 
 adminDatabase.auth.getSession().then(({ data: { session } }) => {
+  // The initial session lookup can finish after the user clicks Sign in.
+  // In that case it must not send a successful sign-in back to this form.
+  if (loginAttemptStarted || loginSucceeded) return;
   if (session) showDashboard();
   else showLogin();
 });
