@@ -16,7 +16,8 @@ const copy = {
     heroButton: 'Explore the latest finds', productsEyebrow: 'Fresh discoveries', productsTitle: 'Latest finds',
     productsCopy: 'Products that earned a place on our shortlist.', loading: 'Loading products…',
     featured: 'Featured find', amazon: 'Amazon', tiktok: 'TikTok', unavailable: 'Products are unavailable right now. Please check back soon.',
-    empty: 'New finds are coming soon.', followTikTok: 'Follow us on TikTok', copyright: 'Marketplace Finds. All rights reserved.'
+    empty: 'New finds are coming soon.', followTikTok: 'Follow us on TikTok', copyright: 'Marketplace Finds. All rights reserved.',
+    affiliateDisclosure: 'As an Amazon Associate I earn from qualifying purchases.'
   },
   ar: {
     navHome: 'الرئيسية', navProducts: 'المنتجات', heroEyebrow: 'منتجات مختارة بعناية',
@@ -25,7 +26,8 @@ const copy = {
     heroButton: 'استكشف أحدث المنتجات', productsEyebrow: 'اكتشافات جديدة', productsTitle: 'أحدث المنتجات',
     productsCopy: 'منتجات اخترناها لتكون ضمن قائمتنا المفضلة.', loading: 'جارٍ تحميل المنتجات…',
     featured: 'منتج مميز', amazon: 'أمازون', tiktok: 'تيك توك', unavailable: 'المنتجات غير متاحة الآن. يرجى المحاولة لاحقًا.',
-    empty: 'منتجات جديدة قريبًا.', followTikTok: 'تابعنا على تيك توك', copyright: 'Marketplace Finds. جميع الحقوق محفوظة.'
+    empty: 'منتجات جديدة قريبًا.', followTikTok: 'تابعنا على تيك توك', copyright: 'Marketplace Finds. جميع الحقوق محفوظة.',
+    affiliateDisclosure: 'بصفتي شريكًا لدى أمازون، أحصل على عمولة من المشتريات المؤهلة.'
   }
 };
 

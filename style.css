@@ -122,9 +122,10 @@ h2 { margin-bottom: 0; font-size: clamp(2.35rem, 5vw, 4rem); letter-spacing: -.0
 .footer-content { min-height: 106px; gap: 28px; }
 .footer-content p { margin: 0; font-size: .82rem; }
 .footer-brand { color: var(--white); }
-.footer-meta { display: flex; align-items: center; gap: 22px; }
+.footer-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px 22px; }
 .footer-meta a { color: var(--orange); font-size: .82rem; font-weight: 750; text-decoration: none; }
 .footer-meta a:hover { color: var(--white); }
+.footer-meta .affiliate-disclosure { flex-basis: 100%; color: rgba(255,255,255,.54); font-size: .72rem; text-align: right; }
 
 html[dir="rtl"] body { font-family: Tahoma, Arial, sans-serif; }
 html[dir="rtl"] .hero-content { text-align: right; }
