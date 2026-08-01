@@ -4,6 +4,12 @@ const ctx = canvas.getContext('2d');
 const mediaInput = document.getElementById('studio-media');
 const mediaHint = document.getElementById('media-hint');
 const studioMessage = document.getElementById('studio-message');
+const handleInput = document.getElementById('studio-handle');
+const watermarkEnabled = document.getElementById('watermark-enabled');
+const brandLogo = new Image();
+brandLogo.src = 'assets/images/icon.png';
+handleInput.value = localStorage.getItem('marketplace-tiktok-handle') || '';
+handleInput.addEventListener('input', () => localStorage.setItem('marketplace-tiktok-handle', handleInput.value.trim()));
 let mode = 'images', images = [], video = null, exporting = false;
 
 function rr(x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
@@ -15,9 +21,10 @@ function value(id, fallback) { return document.getElementById(id).value || fallb
 function render(now = performance.now()) {
   const bg = ctx.createLinearGradient(0, 0, 1080, 1920); bg.addColorStop(0, '#123e8d'); bg.addColorStop(.55, '#071d47'); bg.addColorStop(1, '#030c21'); ctx.fillStyle = bg; ctx.fillRect(0, 0, 1080, 1920);
   ctx.fillStyle = 'rgba(255,157,0,.13)'; ctx.beginPath(); ctx.arc(100, 1540 + Math.sin(now / 1900) * 35, 270, 0, 7); ctx.fill();
-  ctx.fillStyle = '#fff'; ctx.font = '800 38px Arial'; ctx.fillText('MARKETPLACE', 70, 92); ctx.fillStyle = '#ff9d00'; ctx.fillText('FINDS', 370, 92); ctx.fillStyle = 'rgba(255,255,255,.62)'; ctx.font = '600 23px Arial'; ctx.fillText('@farisco_ltd_2', 70, 132);
+  if (brandLogo.complete) ctx.drawImage(brandLogo, 70, 48, 62, 62); ctx.fillStyle = '#fff'; ctx.font = '800 38px Arial'; ctx.fillText('MARKETPLACE', 150, 88); const brandWidth = ctx.measureText('MARKETPLACE').width; ctx.fillStyle = '#ff9d00'; ctx.fillText('FINDS', 162 + brandWidth, 88); ctx.fillStyle = 'rgba(255,255,255,.78)'; ctx.font = '700 24px Arial'; ctx.fillText(handleInput.value || '@your_tiktok_page', 150, 126);
   rr(70, 190, 940, 910, 42); ctx.fillStyle = '#f9fafc'; ctx.fill(); ctx.save(); rr(70, 190, 940, 910, 42); ctx.clip();
   const item = asset(now); if (item && (item.complete || item.readyState >= 2)) contain(item, 100, 220, 880, 850); else { ctx.fillStyle = '#e7ebf1'; ctx.fillRect(70, 190, 940, 910); ctx.fillStyle = '#63708a'; ctx.font = '700 34px Arial'; ctx.textAlign = 'center'; ctx.fillText('Add your product image or video', 540, 650); ctx.textAlign = 'left'; } ctx.restore();
+  if (watermarkEnabled.checked) { ctx.save(); ctx.translate(540, 660); ctx.rotate(-.36); ctx.fillStyle = 'rgba(7,27,67,.18)'; ctx.font = '800 54px Arial'; ctx.textAlign = 'center'; const watermark = `MARKETPLACE FINDS • ${handleInput.value || '@your_tiktok_page'}`; ctx.fillText(watermark, 0, -150); ctx.fillText(watermark, 0, 0); ctx.fillText(watermark, 0, 150); ctx.restore(); ctx.textAlign = 'left'; }
   rr(70, 1145, 940, 555, 38); ctx.fillStyle = 'rgba(255,255,255,.97)'; ctx.fill(); ctx.fillStyle = '#ff9d00'; ctx.font = '800 28px Arial'; ctx.fillText(value('studio-hook', 'A smart find for everyday life').toUpperCase(), 118, 1222);
   ctx.fillStyle = '#102552'; ctx.font = '800 68px Arial'; let y = 1310; lines(value('studio-title', 'Your Product'), 820, ctx.font).forEach((line) => { ctx.fillText(line, 118, y); y += 77; });
   ctx.fillStyle = '#526788'; ctx.font = '500 34px Arial'; lines(value('studio-benefit', 'Add one useful benefit here'), 800, ctx.font).forEach((line) => { ctx.fillText(line, 118, y); y += 42; });

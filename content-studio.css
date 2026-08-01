@@ -13,6 +13,8 @@
 .duration-control { max-width: 190px; }
 .compact-fields { display: grid; grid-template-columns: 1fr 1.5fr; gap: 12px; }
 .export-actions { display: grid; grid-template-columns: 1fr 1.25fr; gap: 10px; }
+.watermark-option { display: flex; align-items: center; gap: 8px; font-size: .82rem; }
+.watermark-option input { width: auto; }
 .secondary-export { border: 1px solid #b6c1d4; background: #edf1f8; }
 .studio-preview { align-self: start; position: sticky; top: 24px; }
 .preview-heading { display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--muted); font-size: .78rem; font-weight: 750; letter-spacing: .05em; text-transform: uppercase; }
