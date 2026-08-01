@@ -10,7 +10,7 @@ const database = window.supabase.createClient(
 
 const copy = {
   en: {
-    navHome: 'Home', navProducts: 'Products', heroEyebrow: 'Curated product discoveries',
+    navHome: 'Home', navProducts: 'Products', heroEyebrow: 'Trending finds, picked for you',
     heroTitle: 'Find the things<br><span>worth finding.</span>',
     heroCopy: 'A considered collection of useful, trending products from Amazon to TikTok—picked to make everyday life a little better.',
     heroButton: 'Explore the latest finds', productsEyebrow: 'Fresh discoveries', productsTitle: 'Latest finds',
