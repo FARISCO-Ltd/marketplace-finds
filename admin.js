@@ -13,6 +13,7 @@ const publishButton = document.getElementById('publish-button');
 const productsList = document.getElementById('admin-products');
 const productCount = document.getElementById('product-count');
 const forgotPasswordButton = document.getElementById('forgot-password');
+let authenticatedInThisPage = false;
 
 function showDashboard() {
   loginPanel.hidden = true;
@@ -59,6 +60,7 @@ loginForm.addEventListener('submit', async (event) => {
     loginMessage.textContent = 'The email or password is incorrect.';
     return;
   }
+  authenticatedInThisPage = true;
   loginForm.reset();
   showDashboard();
 });
@@ -148,7 +150,18 @@ document.getElementById('sign-out').addEventListener('click', async () => {
   showLogin();
 });
 
+adminDatabase.auth.onAuthStateChange((_event, session) => {
+  if (session) {
+    authenticatedInThisPage = true;
+    showDashboard();
+  } else if (!authenticatedInThisPage) {
+    showLogin();
+  }
+});
+
 adminDatabase.auth.getSession().then(({ data: { session } }) => {
+  // Do not let a slow first check overwrite a sign-in that just succeeded.
+  if (authenticatedInThisPage) return;
   if (session) showDashboard();
   else showLogin();
 });
