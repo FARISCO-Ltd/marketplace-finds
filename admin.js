@@ -13,7 +13,7 @@ const publishButton = document.getElementById('publish-button');
 const productsList = document.getElementById('admin-products');
 const productCount = document.getElementById('product-count');
 const forgotPasswordButton = document.getElementById('forgot-password');
-let authenticatedInThisPage = false;
+const passwordToggle = document.querySelector('.password-toggle');
 
 function showDashboard() {
   loginPanel.hidden = true;
@@ -60,12 +60,20 @@ loginForm.addEventListener('submit', async (event) => {
     loginMessage.textContent = 'The email or password is incorrect.';
     return;
   }
-  authenticatedInThisPage = true;
   loginForm.reset();
   // Reload once after a successful sign-in. This makes the stored session the
   // single source of truth and avoids a delayed initial check returning users
   // to the sign-in form.
   window.location.replace('admin.html?dashboard=1');
+});
+
+passwordToggle.addEventListener('click', () => {
+  const passwordInput = document.getElementById('login-password');
+  const showing = passwordInput.type === 'text';
+  passwordInput.type = showing ? 'password' : 'text';
+  passwordToggle.textContent = showing ? 'Show' : 'Hide';
+  passwordToggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+  passwordToggle.setAttribute('aria-pressed', String(!showing));
 });
 
 forgotPasswordButton.addEventListener('click', async () => {
@@ -153,18 +161,7 @@ document.getElementById('sign-out').addEventListener('click', async () => {
   showLogin();
 });
 
-adminDatabase.auth.onAuthStateChange((_event, session) => {
-  if (session) {
-    authenticatedInThisPage = true;
-    showDashboard();
-  } else if (!authenticatedInThisPage) {
-    showLogin();
-  }
-});
-
 adminDatabase.auth.getSession().then(({ data: { session } }) => {
-  // Do not let a slow first check overwrite a sign-in that just succeeded.
-  if (authenticatedInThisPage) return;
   if (session) showDashboard();
   else showLogin();
 });

@@ -27,6 +27,9 @@ button:hover { filter: brightness(1.04); }
 .form-message { min-height: 20px; margin: 0; color: #b12a1a; font-size: .87rem; font-weight: 650; }
 .login-card .form-message { color: #ffbd56; }
 .dashboard { min-height: 100vh; }
+.password-field { position: relative; display: block; }
+.password-field input { padding-right: 68px; }
+.password-toggle { position: absolute; top: 50%; right: 10px; width: auto; min-width: 48px; margin: 0; padding: 6px 8px; transform: translateY(-50%); border: 0; border-radius: 7px; background: #e8eef9; color: var(--deep); font-size: .75rem; font-weight: 800; cursor: pointer; }
 .dashboard-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 84px; padding: 0 max(22px, calc((100% - 1120px) / 2)); color: var(--white); background: var(--deep); }
 .header-actions { display: flex; align-items: center; gap: 16px; font-size: .87rem; }
 .header-actions a { color: rgba(255,255,255,.77); text-decoration: none; }
