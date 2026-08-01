@@ -30,7 +30,7 @@
               <label><input type="radio" name="media-mode" value="video"> Video</label>
             </div>
             <label class="file-picker">Add product image(s) <input id="studio-media" type="file" accept="image/png,image/jpeg,image/webp" multiple><span id="media-hint">Choose up to 5 images</span></label>
-            <div class="compact-fields"><label>Video length <select id="video-length"><option value="8">8 seconds</option><option value="12" selected>12 seconds</option><option value="15">15 seconds</option></select></label><label>Video format <select id="video-format"><option value="auto">Best compatible</option><option value="mp4">MP4 if supported</option><option value="webm">WebM</option></select></label></div>
+            <div class="compact-fields"><label>Video length (5–60 seconds)<input id="video-length" type="number" min="5" max="60" step="1" value="20" inputmode="numeric"></label><label>Video format <select id="video-format"><option value="auto">Best compatible</option><option value="mp4">MP4 if supported</option><option value="webm">WebM</option></select></label></div>
           </fieldset>
 
           <fieldset>
