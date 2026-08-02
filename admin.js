@@ -12,6 +12,10 @@ const productMessage = document.getElementById('product-message');
 const publishButton = document.getElementById('publish-button');
 const productsList = document.getElementById('admin-products');
 const productCount = document.getElementById('product-count');
+const analyticsVisits = document.getElementById('analytics-visits');
+const analyticsVisitors = document.getElementById('analytics-visitors');
+const analyticsAmazon = document.getElementById('analytics-amazon');
+const analyticsProducts = document.getElementById('analytics-products');
 const forgotPasswordButton = document.getElementById('forgot-password');
 const passwordToggle = document.querySelector('.password-toggle');
 let loginAttemptStarted = false;
@@ -23,6 +27,7 @@ function showDashboard() {
   dashboard.hidden = false;
   dashboard.style.display = 'block';
   loadAdminProducts();
+  loadAnalytics();
 }
 
 function showLogin() {
@@ -54,6 +59,33 @@ async function loadAdminProducts() {
       <div class="admin-product-info"><strong>${product.title}</strong><span>${product.price}${product.is_published ? ' · Published' : ' · Draft'}</span></div>
       <button class="delete-button" type="button" data-id="${product.id}" data-image="${product.image_url}">Delete</button>
     </article>`).join('') : '<p class="muted">Your first product will appear here.</p>';
+}
+
+async function loadAnalytics() {
+  const [{ data: events, error: eventsError }, { data: productData, error: productsError }] = await Promise.all([
+    adminDatabase.from('analytics_events').select('event_name, product_id, visitor_id, created_at'),
+    adminDatabase.from('products').select('id, title')
+  ]);
+  if (eventsError || productsError) {
+    analyticsProducts.innerHTML = '<p class="muted">Analytics will appear here after you run the one-time setup.</p>';
+    return;
+  }
+  const pageViews = events.filter((event) => event.event_name === 'page_view');
+  analyticsVisits.textContent = pageViews.length;
+  analyticsVisitors.textContent = new Set(pageViews.map((event) => event.visitor_id)).size;
+  analyticsAmazon.textContent = events.filter((event) => event.event_name === 'amazon_click').length;
+  const totals = new Map(productData.map((product) => [product.id, { title: product.title, viewers: new Set(), amazon: 0, tiktok: 0 }]));
+  events.forEach((event) => {
+    if (!event.product_id || !totals.has(event.product_id)) return;
+    const total = totals.get(event.product_id);
+    if (event.event_name === 'product_view') total.viewers.add(event.visitor_id);
+    if (event.event_name === 'amazon_click') total.amazon += 1;
+    if (event.event_name === 'tiktok_click') total.tiktok += 1;
+  });
+  analyticsProducts.innerHTML = productData.length ? productData.map((product) => {
+    const total = totals.get(product.id);
+    return `<div class="analytics-product-row"><strong>${product.title}</strong><span>${total.viewers.size} views</span><span>${total.amazon} Amazon opens</span><span>${total.tiktok} TikTok opens</span></div>`;
+  }).join('') : '<p class="muted">Add a product to begin tracking.</p>';
 }
 
 loginForm.addEventListener('submit', async (event) => {

@@ -7,6 +7,28 @@ const database = window.supabase.createClient(
   window.SUPABASE_CONFIG.url,
   window.SUPABASE_CONFIG.publishableKey
 );
+const analyticsVisitorKey = 'marketplace-analytics-visitor';
+
+function visitorId() {
+  let id = localStorage.getItem(analyticsVisitorKey);
+  if (!id) { id = crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(16).slice(2)}`; localStorage.setItem(analyticsVisitorKey, id); }
+  return id;
+}
+
+function trackEvent(eventName, productId = null) {
+  return fetch(`${window.SUPABASE_CONFIG.url}/rest/v1/analytics_events`, {
+    method: 'POST', keepalive: true,
+    headers: { apikey: window.SUPABASE_CONFIG.publishableKey, Authorization: `Bearer ${window.SUPABASE_CONFIG.publishableKey}`, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+    body: JSON.stringify({ event_name: eventName, product_id: productId, visitor_id: visitorId() })
+  }).catch(() => {});
+}
+
+function trackOnce(eventName, productId = null) {
+  const key = `marketplace-${eventName}-${productId || 'site'}`;
+  if (sessionStorage.getItem(key)) return;
+  sessionStorage.setItem(key, '1');
+  trackEvent(eventName, productId);
+}
 
 const copy = {
   en: {
@@ -49,7 +71,7 @@ function productCard(product) {
   const image = product.image_url || product.image;
 
   return `
-    <article class="product-card">
+    <article class="product-card" data-product-id="${product.id || ''}">
       <div class="product-image"><img src="${image}" alt="${title}" loading="lazy"></div>
       <div class="product-details">
         <div class="product-meta"><span>${text.featured}</span><span class="rating" aria-label="${product.rating || 0} out of 5 stars">${stars(product.rating)}</span></div>
@@ -57,8 +79,8 @@ function productCard(product) {
         <div class="product-bottom">
           <span class="price">${price}</span>
           <div class="product-links">
-            <a href="${amazon}" target="_blank" rel="noopener noreferrer">${text.amazon}</a>
-            <a href="${tiktok}" target="_blank" rel="noopener noreferrer">${text.tiktok}</a>
+            <a href="${amazon}" target="_blank" rel="noopener noreferrer" data-analytics-event="amazon_click">${text.amazon}</a>
+            <a href="${tiktok}" target="_blank" rel="noopener noreferrer" data-analytics-event="tiktok_click">${text.tiktok}</a>
           </div>
         </div>
       </div>
@@ -68,6 +90,17 @@ function productCard(product) {
 function renderProducts() {
   const text = copy[currentLanguage];
   productsGrid.innerHTML = products.length ? products.map(productCard).join('') : `<p class="empty-state">${text.empty}</p>`;
+  observeProductViews();
+}
+
+function observeProductViews() {
+  const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const id = entry.target.dataset.productId;
+    if (id) trackOnce('product_view', id);
+    observer.unobserve(entry.target);
+  }), { threshold: .55 });
+  productsGrid.querySelectorAll('.product-card').forEach((card) => observer.observe(card));
 }
 
 function setLanguage(language) {
@@ -98,6 +131,13 @@ siteNav.querySelectorAll('a').forEach((link) => {
   });
 });
 
+productsGrid.addEventListener('click', (event) => {
+  const link = event.target.closest('[data-analytics-event]');
+  if (!link) return;
+  const productId = link.closest('.product-card')?.dataset.productId;
+  if (productId) trackEvent(link.dataset.analyticsEvent, productId);
+});
+
 async function loadProducts() {
   const { data, error } = await database
     .from('products')
@@ -122,3 +162,4 @@ async function loadProducts() {
 }
 
 loadProducts();
+trackOnce('page_view');
