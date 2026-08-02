@@ -6,7 +6,7 @@
   <link rel="icon" type="image/png" href="assets/images/icon.png">
   <meta name="robots" content="noindex, nofollow">
   <title>Marketplace Finds | Admin</title>
-  <link rel="stylesheet" href="admin.css?v=40">
+  <link rel="stylesheet" href="admin.css?v=41">
 </head>
 <body>
   <main class="admin-shell">
@@ -46,7 +46,7 @@
             <label>Product name<input id="title" name="title" type="text" placeholder="Enter product name" required></label>
             <label>Arabic name <span class="optional">optional</span><input id="title-ar" name="title-ar" type="text" placeholder="Enter Arabic name"></label>
             <label>Price<input id="price" name="price" type="text" placeholder="Enter price" required></label>
-            <label>Rating<select id="rating" name="rating"><option value="5">★★★★★ — 5</option><option value="4">★★★★ — 4</option><option value="3">★★★ — 3</option><option value="2">★★ — 2</option><option value="1">★ — 1</option></select></label>
+            <label>Rating <span class="optional">1.0 to 5.0</span><input id="rating" name="rating" type="number" min="1" max="5" step="0.1" value="5" inputmode="decimal" required></label>
           </div>
           <label class="wide-label">Product image<input id="image" name="image" type="file" accept="image/png,image/jpeg,image/webp" required><span class="hint">Use a clear, square or portrait product image.</span></label>
           <label class="wide-label">Amazon affiliate link<input id="amazon-url" name="amazon-url" type="url" placeholder="Paste Amazon affiliate link" required></label>
@@ -65,6 +65,6 @@
   </main>
   <script src="config.js?v=12"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="admin.js?v=26"></script>
+  <script src="admin.js?v=27"></script>
 </body>
 </html>
