@@ -58,8 +58,10 @@ let products = [];
 
 year.textContent = new Date().getFullYear();
 
-function stars(rating) {
-  return '★'.repeat(Math.max(0, Math.min(5, Number(rating) || 0)));
+function ratingDisplay(rating) {
+  const value = Math.max(0, Math.min(5, Number(rating) || 0));
+  const percentage = (value / 5) * 100;
+  return `<span class="rating-stars" aria-hidden="true"><span class="rating-stars-empty">★★★★★</span><span class="rating-stars-filled" style="width:${percentage}%">★★★★★</span></span><span class="rating-number">${value.toFixed(1)}</span>`;
 }
 
 function productCard(product) {
@@ -74,7 +76,7 @@ function productCard(product) {
     <article class="product-card" data-product-id="${product.id || ''}">
       <div class="product-image"><img src="${image}" alt="${title}" loading="lazy"></div>
       <div class="product-details">
-        <div class="product-meta"><span>${text.featured}</span><span class="rating" aria-label="${product.rating || 0} out of 5 stars">${stars(product.rating)}</span></div>
+        <div class="product-meta"><span>${text.featured}</span><span class="rating" aria-label="${product.rating || 0} out of 5 stars">${ratingDisplay(product.rating)}</span></div>
         <h3>${title}</h3>
         <div class="product-bottom">
           <span class="price">${price}</span>
