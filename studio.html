@@ -30,6 +30,7 @@
               <label><input type="radio" name="media-mode" value="video"> Video</label>
             </div>
             <label class="file-picker">Add product image(s) <input id="studio-media" type="file" accept="image/png,image/jpeg,image/webp" multiple><span id="media-hint">Choose up to 5 images</span></label>
+            <label id="first-image-control" hidden>First image in the video <select id="first-image"></select></label>
             <div class="compact-fields"><label>Video length (5–60 seconds)<input id="video-length" type="number" min="5" max="60" step="1" value="20" inputmode="numeric"></label><label>Video format <select id="video-format"><option value="auto">Best compatible</option><option value="mp4">MP4 if supported</option><option value="webm">WebM</option></select></label></div>
           </fieldset>
 
@@ -62,6 +63,6 @@
   <div id="studio-loading" hidden></div>
   <script src="config.js?v=24"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="content-studio.js?v=9"></script>
+  <script src="content-studio.js?v=10"></script>
 </body>
 </html>
