@@ -38,7 +38,7 @@ function showLogin() {
 }
 
 function safeFileName(fileName) {
-  return fileName.toLowerCase().replace(/[^a-z0-9.]+/g, '-').replace(/^-+|-+$/g, '');
+  return fileName.trim().toLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '') || 'product';
 }
 
 async function loadAdminProducts() {
@@ -137,7 +137,9 @@ productForm.addEventListener('submit', async (event) => {
 
   publishButton.disabled = true;
   publishButton.textContent = 'Publishing…';
-  const imagePath = `${Date.now()}-${safeFileName(image.name)}`;
+  const productTitle = document.getElementById('title').value.trim();
+  const fileExtension = image.name.includes('.') ? image.name.split('.').pop().toLowerCase() : 'png';
+  const imagePath = `${safeFileName(productTitle || 'product')}.${fileExtension}`;
   const { error: uploadError } = await adminDatabase.storage
     .from('product-images')
     .upload(imagePath, image, { cacheControl: '3600', upsert: false });
@@ -151,7 +153,7 @@ productForm.addEventListener('submit', async (event) => {
 
   const { data: publicImage } = adminDatabase.storage.from('product-images').getPublicUrl(imagePath);
   const { error: insertError } = await adminDatabase.from('products').insert({
-    title: document.getElementById('title').value.trim(),
+    title: productTitle,
     title_ar: document.getElementById('title-ar').value.trim() || null,
     price: document.getElementById('price').value.trim(),
     rating: Number(document.getElementById('rating').value),
