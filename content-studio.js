@@ -42,9 +42,9 @@ function render(now = performance.now()) {
   const amberGlow = ctx.createRadialGradient(920 + Math.cos(elapsed / 6.5) * 20, 1460 + Math.sin(elapsed / 5.7) * 24, 0, 920, 1460, 320); amberGlow.addColorStop(0, 'rgba(255,157,0,.08)'); amberGlow.addColorStop(1, 'rgba(255,157,0,0)'); ctx.fillStyle = amberGlow; ctx.fillRect(0, 0, 1080, 1920);
   if (brandLogo.complete) ctx.drawImage(brandLogo, 70, 36, 112, 112); ctx.fillStyle = '#fff'; ctx.font = '800 40px Arial'; ctx.fillText('MARKETPLACE', 205, 84); const brandWidth = ctx.measureText('MARKETPLACE').width; ctx.fillStyle = '#ff9d00'; ctx.fillText('FINDS', 220 + brandWidth, 84); ctx.fillStyle = 'rgba(235,242,255,.84)'; ctx.font = '700 25px Arial'; ctx.fillText(handleInput.value || '@Marketplace.Finds', 205, 122);
   const titleLines = lines(value('studio-title', 'Your Product'), 820, '800 56px Arial');
-  const benefitFont = '700 32px Arial', benefitLines = lines(value('studio-benefit', 'Add one useful benefit here'), 800, benefitFont, 2);
-  const benefitStartY = 1286 + ((titleLines.length - 1) * 62);
-  const controlsY = Math.max(1426, benefitStartY + (benefitLines.length * 44) + 22);
+  const benefitFont = '700 36px Arial', benefitLines = lines(value('studio-benefit', 'Add one useful benefit here'), 800, benefitFont, 2);
+  const benefitStartY = 1304 + ((titleLines.length - 1) * 62);
+  const controlsY = Math.max(1426, benefitStartY + (benefitLines.length * 48) + 22);
   const infoCardBottom = Math.max(1548, controlsY + 96), infoCardHeight = infoCardBottom - 1060;
   ctx.save(); ctx.shadowColor = 'rgba(1,10,35,.5)'; ctx.shadowBlur = 28; rr(70, 170, 940, 870, 42); ctx.fillStyle = 'rgba(4,24,66,.88)'; ctx.fill(); ctx.restore(); rr(70, 170, 940, 870, 42); ctx.strokeStyle = 'rgba(83,145,255,.78)'; ctx.lineWidth = 3; ctx.stroke();
   rr(96, 196, 888, 818, 28); ctx.fillStyle = '#f7f9fd'; ctx.fill(); ctx.save(); rr(96, 196, 888, 818, 28); ctx.clip();
@@ -53,7 +53,7 @@ function render(now = performance.now()) {
   ctx.save(); ctx.globalAlpha = cardMotion; ctx.translate(0, (1 - cardMotion) * 38); ctx.shadowColor = 'rgba(0,7,25,.45)'; ctx.shadowBlur = 26; rr(70, 1060, 940, infoCardHeight, 42); ctx.fillStyle = 'rgba(4,28,76,.96)'; ctx.fill(); ctx.restore(); rr(70, 1060, 940, infoCardHeight, 42); ctx.strokeStyle = 'rgba(83,145,255,.82)'; ctx.lineWidth = 3; ctx.stroke(); rr(112, 1114, 144, 12, 6); ctx.fillStyle = '#ff9d00'; ctx.fill();
   ctx.save(); ctx.globalAlpha = hookMotion; ctx.translate((1 - hookMotion) * -26, 0); ctx.fillStyle = '#ffad18'; ctx.font = '800 29px Arial'; ctx.fillText(value('studio-hook', 'A smart find for everyday life').toUpperCase(), 112, 1172); ctx.restore();
   ctx.save(); ctx.globalAlpha = titleMotion; ctx.translate(0, (1 - titleMotion) * 26); ctx.fillStyle = '#fff'; ctx.font = '800 56px Arial'; let y = 1244; titleLines.forEach((line) => { ctx.fillText(line, 112, y); y += 62; }); ctx.restore();
-  ctx.save(); ctx.globalAlpha = benefitMotion; ctx.translate(0, (1 - benefitMotion) * 18); ctx.fillStyle = '#c7d6f2'; ctx.font = benefitFont; let benefitY = benefitStartY; benefitLines.forEach((line) => { ctx.fillText(line, 112, benefitY); benefitY += 44; }); ctx.restore();
+  ctx.save(); ctx.globalAlpha = benefitMotion; ctx.translate(0, (1 - benefitMotion) * 18); ctx.fillStyle = '#c7d6f2'; ctx.font = benefitFont; let benefitY = benefitStartY; benefitLines.forEach((line) => { ctx.fillText(line, 112, benefitY); benefitY += 48; }); ctx.restore();
   ctx.save(); ctx.globalAlpha = priceMotion; ctx.translate((1 - priceMotion) * -38, 0); rr(112, controlsY, 270, 78, 20); ctx.fillStyle = '#163b87'; ctx.fill(); ctx.strokeStyle = 'rgba(120,169,255,.65)'; ctx.lineWidth = 2; ctx.stroke(); ctx.fillStyle = '#fff'; ctx.font = '800 38px Arial'; ctx.textAlign = 'center'; ctx.fillText(value('studio-price', 'AED -'), 247, controlsY + 52); ctx.restore();
   ctx.save(); ctx.translate(0, controlsY - 1426);
   ctx.save(); ctx.globalAlpha = ctaMotion; ctx.translate((1 - ctaMotion) * 38, 0); rr(520, 1412, 440, 94, 20); ctx.fillStyle = '#ff9d00'; ctx.fill(); ctx.fillStyle = '#071b43'; ctx.font = '800 25px Arial'; ctx.textAlign = 'center'; ctx.fillText(value('studio-cta', 'Explore the link in bio'), 740, 1450); ctx.font = '800 24px Tahoma'; ctx.direction = 'rtl'; ctx.fillText('اكتشف المزيد عبر الرابط في البايو', 740, 1489); ctx.direction = 'inherit'; ctx.restore();
