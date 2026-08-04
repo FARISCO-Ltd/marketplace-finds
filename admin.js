@@ -41,6 +41,29 @@ function safeFileName(fileName) {
   return fileName.trim().toLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '') || 'product';
 }
 
+function productReadyToPublish() {
+  const required = [
+    ['title', 'Product name'],
+    ['price', 'Price'],
+    ['rating', 'Rating'],
+    ['amazon-url', 'Amazon affiliate link'],
+    ['tiktok-url', 'TikTok product video link']
+  ];
+  const missing = required.filter(([id]) => !document.getElementById(id).value.trim()).map(([, label]) => label);
+  const imageInput = document.getElementById('image');
+  if (!imageInput.files.length) missing.unshift('Product image');
+  const invalidUrl = ['amazon-url', 'tiktok-url'].some((id) => document.getElementById(id).value.trim() && !document.getElementById(id).validity.valid);
+  const rating = document.getElementById('rating');
+  if (rating.value.trim() && !rating.validity.valid) missing.push('a rating from 1.0 to 5.0');
+  if (invalidUrl) missing.push('valid product links');
+  if (!missing.length) return true;
+  productMessage.style.color = '#ba3b2a';
+  productMessage.textContent = `Please complete: ${[...new Set(missing)].join(', ')}.`;
+  const firstMissing = required.find(([id]) => !document.getElementById(id).value.trim());
+  (firstMissing ? document.getElementById(firstMissing[0]) : imageInput).focus();
+  return false;
+}
+
 async function loadAdminProducts() {
   const { data, error } = await adminDatabase
     .from('products')
@@ -129,6 +152,7 @@ forgotPasswordButton.addEventListener('click', async () => {
 productForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   productMessage.textContent = '';
+  if (!productReadyToPublish()) return;
   const image = document.getElementById('image').files[0];
   if (!image) {
     productMessage.textContent = 'Please choose a product image.';
