@@ -42,6 +42,9 @@ button:hover { filter: brightness(1.04); }
 .analytics-cards > div { padding: 16px; border-radius: 13px; background: #f5f7fb; }
 .analytics-cards span { display: block; color: var(--muted); font-size: .78rem; font-weight: 700; }
 .analytics-cards strong { display: block; margin-top: 5px; color: var(--ink); font-size: 1.55rem; }
+.analytics-toggle { min-height: 38px; padding: 0 14px; border: 1px solid #c8d4ea; border-radius: 9px; color: var(--ink); background: #f5f7fb; font-size: .82rem; font-weight: 800; cursor: pointer; }
+.analytics-toggle:hover { border-color: var(--orange); color: var(--orange); background: #fffaf1; }
+.analytics-products { margin-top: 14px; }
 .analytics-product-row { display: grid; grid-template-columns: 1fr repeat(3, auto); gap: 14px; align-items: center; padding: 13px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .84rem; }
 .analytics-product-row strong { color: var(--ink); }
 .header-actions { display: flex; align-items: center; gap: 16px; font-size: .87rem; }

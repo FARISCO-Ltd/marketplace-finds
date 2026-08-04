@@ -16,6 +16,7 @@ const analyticsVisits = document.getElementById('analytics-visits');
 const analyticsVisitors = document.getElementById('analytics-visitors');
 const analyticsAmazon = document.getElementById('analytics-amazon');
 const analyticsProducts = document.getElementById('analytics-products');
+const analyticsToggle = document.getElementById('analytics-toggle');
 const forgotPasswordButton = document.getElementById('forgot-password');
 const passwordToggle = document.querySelector('.password-toggle');
 let loginAttemptStarted = false;
@@ -109,7 +110,17 @@ async function loadAnalytics() {
     const total = totals.get(product.id);
     return `<div class="analytics-product-row"><strong>${product.title}</strong><span>${total.viewers.size} views</span><span>${total.amazon} Amazon opens</span><span>${total.tiktok} TikTok opens</span></div>`;
   }).join('') : '<p class="muted">Add a product to begin tracking.</p>';
+  analyticsToggle.dataset.count = String(productData.length);
+  analyticsToggle.textContent = analyticsProducts.hidden ? (productData.length ? `Show performance by product (${productData.length})` : 'Show product performance') : 'Hide product performance';
 }
+
+analyticsToggle.addEventListener('click', () => {
+  const opening = analyticsProducts.hidden;
+  analyticsProducts.hidden = !opening;
+  analyticsToggle.setAttribute('aria-expanded', String(opening));
+  const count = Number(analyticsToggle.dataset.count || 0);
+  analyticsToggle.textContent = opening ? 'Hide product performance' : (count ? `Show performance by product (${count})` : 'Show product performance');
+});
 
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();

@@ -39,7 +39,8 @@
         <section class="analytics-panel" aria-labelledby="analytics-heading">
           <div class="products-panel-heading"><div><h2 id="analytics-heading">Private analytics</h2><p class="muted">Only visible to you after signing in.</p></div><span>Live</span></div>
           <div class="analytics-cards"><div><span>Page visits</span><strong id="analytics-visits">—</strong></div><div><span>Unique visitors</span><strong id="analytics-visitors">—</strong></div><div><span>Amazon opens</span><strong id="analytics-amazon">—</strong></div></div>
-          <div class="analytics-products" id="analytics-products"><p class="muted">Loading analytics…</p></div>
+          <button class="analytics-toggle" id="analytics-toggle" type="button" aria-expanded="false" aria-controls="analytics-products">Show product performance</button>
+          <div class="analytics-products" id="analytics-products" hidden><p class="muted">Loading analytics…</p></div>
         </section>
         <form class="product-form" id="product-form" novalidate>
           <div class="form-grid">
@@ -65,6 +66,6 @@
   </main>
   <script src="config.js?v=12"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="admin.js?v=29"></script>
+  <script src="admin.js?v=30"></script>
 </body>
 </html>
