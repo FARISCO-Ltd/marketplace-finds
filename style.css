@@ -78,6 +78,7 @@ h1, h2, p { margin-top: 0; }
 h1 { max-width: 760px; margin-bottom: 25px; font-size: clamp(3.3rem, 7vw, 6.3rem); line-height: .98; letter-spacing: -.07em; }
 h1 span { color: var(--orange); }
 .hero-copy { max-width: 570px; margin-bottom: 34px; color: rgba(255,255,255,.76); font-size: clamp(1rem, 2vw, 1.18rem); line-height: 1.7; }
+.image-source-notice { max-width: 570px; margin: -13px 0 28px; padding: 10px 14px; border-left: 4px solid var(--orange); border-radius: 0 10px 10px 0; color: rgba(255,255,255,.94); background: rgba(2,10,29,.30); font-size: clamp(.92rem, 1.7vw, 1.04rem); font-weight: 700; line-height: 1.45; }
 .button { display: inline-flex; align-items: center; gap: 18px; border-radius: 999px; padding: 15px 22px; font-size: .94rem; font-weight: 750; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
 .button-primary { color: var(--navy-deep); background: var(--orange); box-shadow: 0 12px 26px rgba(0,0,0,.18); }
 .button:hover { transform: translateY(-2px); box-shadow: 0 17px 30px rgba(0,0,0,.24); }
@@ -133,6 +134,7 @@ h2 { margin-bottom: 0; font-size: clamp(2.35rem, 5vw, 4rem); letter-spacing: -.0
 
 html[dir="rtl"] body { font-family: Tahoma, Arial, sans-serif; }
 html[dir="rtl"] .hero-content { text-align: right; }
+html[dir="rtl"] .image-source-notice { border-right: 4px solid var(--orange); border-left: 0; border-radius: 10px 0 0 10px; }
 html[dir="rtl"] .section-heading > p { text-align: right; }
 html[dir="rtl"] .product-meta, html[dir="rtl"] .product-bottom { direction: rtl; }
 
